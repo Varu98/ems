@@ -13,6 +13,8 @@ import {
   AvatarBadge,
   VStack,
   Text,
+  Button,
+  HStack,
 } from '@chakra-ui/react';
 import React from 'react';
 import { FiCamera } from 'react-icons/fi';
@@ -44,19 +46,25 @@ const UserProfile = () => {
             </Avatar>
           </AvatarGroup>
         </VStack>
-        <SimpleGrid columns={2} columnGap={3} rowGap={3}>
+        <SimpleGrid
+          placeContent={'stretch'}
+          placeItems={'stretch'}
+          columns={2}
+          columnGap={3}
+          rowGap={3}
+        >
           <GridItem colSpan={1}>
-            <FormControl>
+            <FormControl isRequired>
               <Input placeholder="First Name" />
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
-            <FormControl>
+            <FormControl isRequired>
               <Input placeholder="Last Name" />
             </FormControl>
           </GridItem>
           <GridItem colSpan={2}>
-            <FormControl>
+            <FormControl isRequired>
               <Input placeholder="Designation" />
             </FormControl>
           </GridItem>
@@ -67,13 +75,13 @@ const UserProfile = () => {
         {/* Nested Grid Two */}
         <SimpleGrid columns={2} columnGap={3} rowGap={3}>
           <GridItem colSpan={1}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Date Of Birth</FormLabel>
               <Input placeholder="Date of Birth" type={'date'} />
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Gender</FormLabel>
               <Select placeholder="Gender">
                 <option value="male">Male</option>
@@ -82,12 +90,12 @@ const UserProfile = () => {
             </FormControl>
           </GridItem>
           <GridItem colSpan={2}>
-            <FormControl>
+            <FormControl isRequired>
               <Input placeholder="Address 1" />
             </FormControl>
           </GridItem>
           <GridItem colSpan={2}>
-            <FormControl>
+            <FormControl isRequired>
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
@@ -98,13 +106,13 @@ const UserProfile = () => {
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>City</FormLabel>
               <Input placeholder="City" />
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>State</FormLabel>
               <Select placeholder="State">
                 <option value="up">Uttar Pradesh</option>
@@ -116,13 +124,13 @@ const UserProfile = () => {
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Zip Code</FormLabel>
               <Input placeholder="Zip Code" />
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Country</FormLabel>
               <Select placeholder="Country">
                 <option value="ind">India</option>
@@ -131,6 +139,16 @@ const UserProfile = () => {
                 <option value="rus">Russia</option>
               </Select>
             </FormControl>
+          </GridItem>
+          <GridItem colSpan={1} colEnd={3}>
+            <HStack justifyContent={'center'} w={'full'}>
+              <Button fontSize={['.7rem', '1rem']} colorScheme={'gray'}>
+                Cancel
+              </Button>
+              <Button fontSize={['.7rem', '1rem']} colorScheme={'green'}>
+                Submit
+              </Button>
+            </HStack>
           </GridItem>
         </SimpleGrid>
       </GridItem>
