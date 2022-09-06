@@ -14,6 +14,7 @@ import {
 import { FiEdit2 } from 'react-icons/fi';
 import React from 'react';
 import { DeleteIcon } from '@chakra-ui/icons';
+import DesignationCard from '../Components/DesignationCard';
 
 const HomePage = () => {
   return (
@@ -38,34 +39,7 @@ const HomePage = () => {
         </Button>
       </Flex>
       <GridItem mb={'3rem'} colSpan={'3'}>
-        <VStack>
-          <Wrap>
-            <WrapItem>
-              <Avatar
-                shadow={'md'}
-                border="5px solid white"
-                size={'2xl'}
-                src="images/maleAvatar.png"
-              />
-            </WrapItem>
-          </Wrap>
-          <Heading
-            textAlign={'center'}
-            color={'blackAlpha.800'}
-            as={'h3'}
-            size="lg"
-          >
-            Sasuke Uchiha
-          </Heading>
-          <Heading
-            textAlign={'center'}
-            color={'blackAlpha.600'}
-            as={'h5'}
-            size="sm"
-          >
-            HR Manager
-          </Heading>
-        </VStack>
+        <DesignationCard />
       </GridItem>
       <GridItem>
         <Heading
