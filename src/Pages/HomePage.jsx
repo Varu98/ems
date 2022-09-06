@@ -15,6 +15,7 @@ import { FiEdit2 } from 'react-icons/fi';
 import React from 'react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import DesignationCard from '../Components/DesignationCard';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -27,16 +28,20 @@ const HomePage = () => {
       <Flex
         flexDirection={'column'}
         gap={'1rem'}
-        top={'14'}
+        top={'20'}
         right={'5'}
         position={'absolute'}
       >
-        <Button shadow={'xl'} borderRadius={'100%'} colorScheme={'green'}>
-          <FiEdit2 />
-        </Button>
-        <Button shadow={'xl'} borderRadius={'100%'} colorScheme={'red'}>
-          <DeleteIcon />
-        </Button>
+        <Link to={'user-profile'}>
+          <Button shadow={'xl'} borderRadius={'100%'} colorScheme={'green'}>
+            <FiEdit2 />
+          </Button>
+        </Link>
+        <Link to={'user-profile'}>
+          <Button shadow={'xl'} borderRadius={'100%'} colorScheme={'red'}>
+            <DeleteIcon />
+          </Button>
+        </Link>
       </Flex>
       <GridItem mb={'3rem'} colSpan={'3'}>
         <DesignationCard />
