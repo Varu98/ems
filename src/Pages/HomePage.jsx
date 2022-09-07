@@ -1,23 +1,18 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-  Image,
-  VStack,
-  Wrap,
-  WrapItem,
-} from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import { FiEdit2 } from 'react-icons/fi';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import DesignationCard from '../Components/DesignationCard';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from '../features/users/userSlice';
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const { status, users } = useSelector(store => store.user);
+  useEffect(() => {
+    if (status === 'idle') dispatch(fetchUsers());
+  }, [dispatch, status]);
   return (
     <Grid
       minH={'100%'}
