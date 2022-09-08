@@ -19,14 +19,7 @@ const Router = () => {
           </RequiresAuth>
         }
       />
-      <Route
-        path="user-profile"
-        element={
-          <RequiresAuth>
-            <UserProfile />
-          </RequiresAuth>
-        }
-      />
+      <Route path="user-profile" element={<UserProfile />} />
       <Route
         path="admin"
         element={
