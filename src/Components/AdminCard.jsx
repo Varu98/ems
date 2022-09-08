@@ -49,7 +49,7 @@ const AdminCard = () => {
                 border="5px solid white"
                 size={'2xl'}
                 src={
-                  user.male
+                  user.gender === 'male'
                     ? 'images/maleAvatar.png'
                     : 'images/femaleAvatar.png'
                 }
