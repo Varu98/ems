@@ -1,40 +1,26 @@
-import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import React, { useEffect } from 'react';
+import { ChakraProvider, Grid, theme } from '@chakra-ui/react';
+import Navbar from './Components/Navbar';
+import Router from './Routes/Router';
 
+import { createStandaloneToast } from '@chakra-ui/toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from './features/users/userSlice';
 function App() {
+  const { ToastContainer } = createStandaloneToast();
+  const { status } = useSelector(store => store.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (status === 'idle') dispatch(fetchUsers());
+  }, [dispatch, status]);
+
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+      <Navbar />
+      <Grid placeContent={'center'} minH={'90vh'}>
+        <ToastContainer />
+        <Router />
+      </Grid>
     </ChakraProvider>
   );
 }
