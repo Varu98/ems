@@ -14,12 +14,16 @@ import {
   VStack,
   Wrap,
   WrapItem,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { deleteUserByAdmin } from '../features/users/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 const AdminCard = () => {
+  const textColor = useColorModeValue('blackAlpha.800', 'whiteAlpha.800');
+  const textColor2 = useColorModeValue('blackAlpha.600', 'whiteAlpha.600');
+  const alertColor = useColorModeValue('blackAlpha.100', 'blackAlpha.50');
   const dispatch = useDispatch();
   const { users } = useSelector(store => store.user);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,21 +52,11 @@ const AdminCard = () => {
               />
             </WrapItem>
           </Wrap>
-          <Heading
-            textAlign={'center'}
-            color={'blackAlpha.800'}
-            as={'h3'}
-            size="lg"
-          >
+          <Heading textAlign={'center'} color={textColor} as={'h3'} size="lg">
             {console.log(user.name)}
             {user.name}
           </Heading>
-          <Heading
-            textAlign={'center'}
-            color={'blackAlpha.600'}
-            as={'h5'}
-            size="sm"
-          >
+          <Heading textAlign={'center'} color={textColor2} as={'h5'} size="sm">
             HR Manager
           </Heading>
         </VStack>
@@ -85,8 +79,8 @@ const AdminCard = () => {
           leastDestructiveRef={cancelRef}
           onClose={onClose}
         >
-          <AlertDialogOverlay bgColor={'blackAlpha.200'}>
-            <AlertDialogContent>
+          <AlertDialogOverlay bgColor={alertColor}>
+            <AlertDialogContent shadow={'md'}>
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
                 Delete Employee
               </AlertDialogHeader>
