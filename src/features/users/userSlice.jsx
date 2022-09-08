@@ -9,7 +9,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const { data } = await axios.get('https://gorest.co.in/public/v2/users', {
     headers: {
       Authorization:
-        'Bearer d7dc1bcd537dc8663264a6c7dc948e094be254a215e12bdc712b109432882a5f',
+        'Bearer 26af435091ba0bfdcdf8cf2b77bea4439c07edbbeba8437e637fe7dc4b7e0103',
     },
   });
   return data;
@@ -26,7 +26,7 @@ export const postNewUserCredentials = createAsyncThunk(
         {
           headers: {
             Authorization:
-              'Bearer d7dc1bcd537dc8663264a6c7dc948e094be254a215e12bdc712b109432882a5f',
+              'Bearer 26af435091ba0bfdcdf8cf2b77bea4439c07edbbeba8437e637fe7dc4b7e0103',
           },
         }
       );
