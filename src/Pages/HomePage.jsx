@@ -1,27 +1,22 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-  Image,
-  VStack,
-  Wrap,
-  WrapItem,
-} from '@chakra-ui/react';
+import { Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import { FiEdit2 } from 'react-icons/fi';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DeleteIcon } from '@chakra-ui/icons';
-import DesignationCard from '../Components/DesignationCard';
+import DesignationCard from '../Components/UserCard';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from '../features/users/userSlice';
+import UserCard from '../Components/UserCard';
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const { status } = useSelector(store => store.user);
+
   return (
     <Grid
+      m={'2rem'}
       minH={'100%'}
-      templateRows={'repeat(2, 1fr)'}
+      templateRows={'10rem, 1fr'}
       templateColumns={'repeat(3, 1fr)'}
       minW={'20rem'}
     >
@@ -43,63 +38,7 @@ const HomePage = () => {
           </Button>
         </Link>
       </Flex>
-      <GridItem mb={'3rem'} colSpan={'3'}>
-        <DesignationCard />
-      </GridItem>
-      <GridItem>
-        <Heading
-          textAlign={'center'}
-          color={'blackAlpha.600'}
-          as={'h5'}
-          size="sm"
-        >
-          Gender
-        </Heading>
-        <Heading
-          textAlign={'center'}
-          as={'h4'}
-          size="md"
-          color={'blackAlpha.800'}
-        >
-          Male
-        </Heading>
-      </GridItem>
-      <GridItem>
-        <Heading
-          textAlign={'center'}
-          color={'blackAlpha.600'}
-          as={'h5'}
-          size="sm"
-        >
-          DOB
-        </Heading>
-        <Heading
-          textAlign={'center'}
-          as={'h4'}
-          size="md"
-          color={'blackAlpha.800'}
-        >
-          18/10/200
-        </Heading>
-      </GridItem>
-      <GridItem>
-        <Heading
-          textAlign={'center'}
-          color={'blackAlpha.600'}
-          as={'h5'}
-          size="sm"
-        >
-          Nationality
-        </Heading>
-        <Heading
-          textAlign={'center'}
-          as={'h4'}
-          size="md"
-          color={'blackAlpha.800'}
-        >
-          Turkey
-        </Heading>
-      </GridItem>
+      <UserCard />
     </Grid>
   );
 };
