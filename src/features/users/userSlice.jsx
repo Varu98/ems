@@ -25,8 +25,7 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchUsers.fulfilled]: (state, action) => {
-      console.log(action);
-      state.users = action.payload;
+      state.users = [{ name: 'admin', email: 'admin' }, ...action.payload];
       state.status = 'fulfilled';
       if (!toast.isActive(id)) {
         toast({
@@ -46,7 +45,5 @@ const userSlice = createSlice({
     },
   },
 });
-
-export const { getUsers } = userSlice.actions;
 
 export default userSlice.reducer;

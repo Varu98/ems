@@ -8,68 +8,17 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { FiPlus } from 'react-icons/fi';
-import DesignationCard from '../Components/DesignationCard';
+import AdminCard from '../Components/AdminCard';
 
 const AdminHome = () => {
   return (
-    <SimpleGrid columns={2} rowGap="6" columnGap={[6, 12]}>
-      <GridItem
-        position={'relative'}
-        shadow={'md'}
-        p="2rem"
-        rounded={'md'}
-        colSpan={1}
-      >
-        <DesignationCard />
-        <Button
-          position={'absolute'}
-          bottom="3"
-          right={3}
-          shadow={'xl'}
-          borderRadius={'100%'}
-          colorScheme={'red'}
-        >
-          <DeleteIcon />
-        </Button>
-      </GridItem>
-      <GridItem
-        position={'relative'}
-        shadow={'md'}
-        p="2rem"
-        rounded={'md'}
-        colSpan={1}
-      >
-        <DesignationCard />
-        <Button
-          position={'absolute'}
-          bottom="3"
-          right={3}
-          shadow={'xl'}
-          borderRadius={'100%'}
-          colorScheme={'red'}
-        >
-          <DeleteIcon />
-        </Button>
-      </GridItem>
-      <GridItem
-        position={'relative'}
-        shadow={'md'}
-        p="2rem"
-        rounded={'md'}
-        colSpan={1}
-      >
-        <DesignationCard />
-        <Button
-          position={'absolute'}
-          bottom="3"
-          right={3}
-          shadow={'xl'}
-          borderRadius={'100%'}
-          colorScheme={'red'}
-        >
-          <DeleteIcon />
-        </Button>
-      </GridItem>
+    <SimpleGrid
+      m={[6, 12]}
+      columns={[1, 1, 2]}
+      rowGap={[6, 12]}
+      columnGap={[6, 12]}
+    >
+      <AdminCard />
       <GridItem
         position={'relative'}
         shadow={'md'}
