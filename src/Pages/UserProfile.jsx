@@ -16,10 +16,50 @@ import {
   Button,
   HStack,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiCamera } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addUser, updateUser } from '../features/authentication/authSlice';
+import {
+  fetchUsers,
+  postNewUserCredentials,
+} from '../features/users/userSlice';
 
 const UserProfile = () => {
+  const dispatch = useDispatch();
+  const { users, createUser } = useSelector(store => store.user);
+  const navigate = useNavigate();
+  const [newUser, SetnewUser] = useState({
+    ...createUser,
+    lastName: '',
+    designation: '',
+    dob: '',
+    gender: '',
+    address: '',
+    phone: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
+    status: 'active',
+  });
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+    console.log(users);
+  }, [dispatch]);
+  const newUserHandler = e => {
+    const { name, value } = e.target;
+    SetnewUser(prevCredentials => ({
+      ...prevCredentials,
+      [name]: value,
+    }));
+    console.log(newUser);
+  };
+
+  const areAllFieldsFilled = obj => Object.values(obj).includes('');
+
   return (
     <SimpleGrid
       placeContent={'stretch'}
@@ -55,17 +95,29 @@ const UserProfile = () => {
         >
           <GridItem colSpan={1}>
             <FormControl isRequired>
-              <Input placeholder="First Name" />
+              <Input
+                onChange={e => newUserHandler(e)}
+                name="name"
+                placeholder="First Name"
+              />
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
             <FormControl isRequired>
-              <Input placeholder="Last Name" />
+              <Input
+                onChange={e => newUserHandler(e)}
+                name="lastName"
+                placeholder="Last Name"
+              />
             </FormControl>
           </GridItem>
           <GridItem colSpan={2}>
             <FormControl isRequired>
-              <Input placeholder="Designation" />
+              <Input
+                onChange={e => newUserHandler(e)}
+                name="designation"
+                placeholder="Designation"
+              />
             </FormControl>
           </GridItem>
         </SimpleGrid>
@@ -77,13 +129,22 @@ const UserProfile = () => {
           <GridItem colSpan={1}>
             <FormControl isRequired>
               <FormLabel>Date Of Birth</FormLabel>
-              <Input placeholder="Date of Birth" type={'date'} />
+              <Input
+                onChange={e => newUserHandler(e)}
+                name="dob"
+                placeholder="Date of Birth"
+                type={'date'}
+              />
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
             <FormControl isRequired>
               <FormLabel>Gender</FormLabel>
-              <Select placeholder="Gender">
+              <Select
+                onChange={e => newUserHandler(e)}
+                name="gender"
+                placeholder="Gender"
+              >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </Select>
@@ -91,7 +152,11 @@ const UserProfile = () => {
           </GridItem>
           <GridItem colSpan={2}>
             <FormControl isRequired>
-              <Input placeholder="Address 1" />
+              <Input
+                onChange={e => newUserHandler(e)}
+                name="address"
+                placeholder="Address 1"
+              />
             </FormControl>
           </GridItem>
           <GridItem colSpan={2}>
@@ -101,20 +166,33 @@ const UserProfile = () => {
                   pointerEvents="none"
                   children={<PhoneIcon color="gray.300" />}
                 />
-                <Input type="tel" placeholder="Phone number" />
+                <Input
+                  onChange={e => newUserHandler(e)}
+                  name="phone"
+                  type="tel"
+                  placeholder="Phone number"
+                />
               </InputGroup>
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
             <FormControl isRequired>
               <FormLabel>City</FormLabel>
-              <Input placeholder="City" />
+              <Input
+                onChange={e => newUserHandler(e)}
+                name="city"
+                placeholder="City"
+              />
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
             <FormControl isRequired>
               <FormLabel>State</FormLabel>
-              <Select placeholder="State">
+              <Select
+                onChange={e => newUserHandler(e)}
+                name="state"
+                placeholder="State"
+              >
                 <option value="up">Uttar Pradesh</option>
                 <option value="rj">Rajasthan</option>
                 <option value="kk">KolKata</option>
@@ -126,13 +204,21 @@ const UserProfile = () => {
           <GridItem colSpan={1}>
             <FormControl isRequired>
               <FormLabel>Zip Code</FormLabel>
-              <Input placeholder="Zip Code" />
+              <Input
+                onChange={e => newUserHandler(e)}
+                name="zip"
+                placeholder="Zip Code"
+              />
             </FormControl>
           </GridItem>
           <GridItem colSpan={1}>
             <FormControl isRequired>
               <FormLabel>Country</FormLabel>
-              <Select placeholder="Country">
+              <Select
+                onChange={e => newUserHandler(e)}
+                name="country"
+                placeholder="Country"
+              >
                 <option value="ind">India</option>
                 <option value="pak">Pakistan</option>
                 <option value="chi">China</option>
@@ -145,7 +231,18 @@ const UserProfile = () => {
               <Button fontSize={['.7rem', '1rem']} colorScheme={'gray'}>
                 Cancel
               </Button>
-              <Button fontSize={['.7rem', '1rem']} colorScheme={'green'}>
+              <Button
+                type="submit"
+                isDisabled={areAllFieldsFilled(newUser)}
+                onClick={e => {
+                  e.preventDefault();
+                  dispatch(postNewUserCredentials(newUser));
+                  dispatch(addUser(newUser));
+                  navigate('/');
+                }}
+                fontSize={['.7rem', '1rem']}
+                colorScheme={'green'}
+              >
                 Submit
               </Button>
             </HStack>

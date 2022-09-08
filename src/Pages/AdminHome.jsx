@@ -8,9 +8,11 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { FiPlus } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import AdminCard from '../Components/AdminCard';
 
 const AdminHome = () => {
+  const navigate = useNavigate();
   return (
     <SimpleGrid
       m={[6, 12]}
@@ -28,6 +30,9 @@ const AdminHome = () => {
       >
         <VStack spacing={'2rem'}>
           <Button
+            onClick={() => {
+              navigate('/user-profile');
+            }}
             maxW={'5rem'}
             maxH={'5rem'}
             rounded={'full'}

@@ -16,6 +16,10 @@ const PasswordInput = ({ loginHandler }) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <Box position={'relative'}>
+      <Tag variant="subtle" colorScheme="yellow">
+        <TagLeftIcon boxSize="12px" as={FaRegLightbulb} />
+        <TagLabel>enter name of user from API as password</TagLabel>
+      </Tag>
       <Input
         onChange={e => loginHandler(e)}
         name="password"
@@ -30,15 +34,11 @@ const PasswordInput = ({ loginHandler }) => {
         colorScheme={'link'}
         background={'none'}
         position={'absolute'}
-        top={'0'}
+        top={'6'}
         right={'0'}
       >
         <LockIcon color={'grey'} />
       </Button>
-      <Tag variant="subtle" colorScheme="yellow">
-        <TagLeftIcon boxSize="12px" as={FaRegLightbulb} />
-        <TagLabel>enter the name of the user as password</TagLabel>
-      </Tag>
     </Box>
   );
 };

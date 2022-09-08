@@ -9,10 +9,17 @@ import {
   WrapItem,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser } from '../features/authentication/authSlice.js';
+import { useEffect } from 'react';
 
 const UserCard = () => {
-  const { user } = useSelector(store => store.auth);
+  const { user, isLoggedIn } = useSelector(store => store.auth);
+  const { createUser } = useSelector(store => store.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!isLoggedIn) dispatch(updateUser(createUser));
+  }, [dispatch]);
 
   return (
     <>
