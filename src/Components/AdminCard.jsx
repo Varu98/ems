@@ -48,7 +48,11 @@ const AdminCard = () => {
                 shadow={'md'}
                 border="5px solid white"
                 size={'2xl'}
-                src="images/maleAvatar.png"
+                src={
+                  user.male
+                    ? 'images/maleAvatar.png'
+                    : 'images/femaleAvatar.png'
+                }
               />
             </WrapItem>
           </Wrap>
